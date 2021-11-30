@@ -21,50 +21,64 @@ var json = {
 "completedHtml": "<h3>Thank you for checking the eligibilty.</h3>",
 "completedHtmlOnCondition": [
     {
-        "expression": "{convicted} = false and {defered_adjudication} = true and {sex_offense} = false and {family_violence} = false and {waited_time} = true",
+        "expression": "{supervision} = false and {pending_charges} = false and {outstanding_fees} = false and {nolle} = false and {criminal_record} = true and {conviction_} = true and {years} = true",
         "html": "<h3>Eligible for Absolute Pardon </h3><br /><h2>Thank you for using the eligibility checker.</h2>"
     }, {
-        "expression": "{convicted} = true or {defered_adjudication} = false or {sex_offense} = true or {family_violence} = true and {waited_time} = true",
+        "expression": "{supervision} = true or {pending_charges} = true or {outstanding_fees} = true or {nolle} = true",
         "html": "<h3>You are not Eligible for Absolute Pardon </h3><br /><h2>Thank you for using the eligibility checker.</h2>"
     }
 ],
-pages: [
-    {
-     name: "page1",
-     elements: [
-      {
-       type: "boolean",
-       name: "convicted",
-       title: "Were you convicted of the offense?",
-       isRequired: true
-      },
-      {
-       type: "boolean",
-       name: "defered_adjudication",
-       title: "Have you been placed on or completed the deferred adjudication?",
-       isRequired: true
-      },
-      {
-       type: "boolean",
-       name: "sex_offense",
-       title: "Have you ever been convicted of a sex offense?",
-       isRequired: true
-      },
-      {
-       type: "boolean",
-       name: "family_violence",
-       title: "Have you been ever convicted of any family violence?",
-       isRequired: true
-      },
-      {
-       type: "boolean",
-       name: "waited_time",
-       title: "Have you waited for a certain period of time after the court’s order of dismissal and discharge to seek an order of nondisclosure?",
-       isRequired: true
-      }
-     ]
-    }
-   ],
+"pages": [
+{
+"name": "page1",
+"elements": [
+{
+ "type": "boolean",
+ "name": "supervision",
+ "title": "Are you currently on supervision? ",
+ "isRequired": true
+},
+{
+ "type": "boolean",
+ "name": "pending_charges",
+ "visibleIf": "{supervision} = false",
+ "title": "Do you have any pending charges in Connecticut or any other State or Federal\njurisdiction?",
+ "isRequired": true
+},
+{
+ "type": "boolean",
+ "name": "outstanding_fees",
+ "visibleIf": "{pending_charges} = false and {supervision} = false",
+ "title": "Do you have any outstanding court fees, fines, Judicial motions, etc.? ",
+ "isRequired": true
+},
+{
+ "type": "boolean",
+ "name": "nolle",
+ "visibleIf": "{outstanding_fees} = false and {pending_charges} = false and {outstanding_fees} = false",
+ "title": "Have you received a Nolle at any time during the previous 13 months? "
+},
+{
+ "type": "boolean",
+ "name": "criminal_record",
+ "visibleIf": "{supervision} = false and {pending_charges} = false and {outstanding_fees} = false and {nolle} = false",
+ "title": "Do you have a criminal record in CT?"
+},
+{
+ "type": "boolean",
+ "name": "conviction_",
+ "visibleIf": "{criminal_record} = true and {supervision} = false and {pending_charges} = false and {outstanding_fees} = false and {nolle} = false",
+ "title": "Has it been three (3) years since the conviction date for your most recent\nMisdemeanor? (if applicable)"
+},
+{
+ "type": "boolean",
+ "name": "years",
+ "visibleIf": "(((({criminal_record} == true) and ({supervision} == false)) and ({pending_charges} == false)) and ({outstanding_fees} == false)) and ({nolle} == false) and ({conviction_} == true) ",
+ "title": "Has it been five (5) years since the conviction date for your most recent Felony?\n(if applicable)"
+}
+]
+}
+],
 "showQuestionNumbers": "off",
 "title": "Connecticut Absolute Pardon Eligibility Checker"
 };
