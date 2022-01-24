@@ -1,114 +1,140 @@
 <html>
-  <head>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="{{ url_for('static', filename='js/index.js') }}"></script>
-    <link
-      rel="stylesheet"
-      href="{{ url_for('static', filename='css/index.css') }}"
-    />
-    <link rel="preconnect" href="https://fonts.gstatic.com" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Raleway&display=swap"
-      rel="stylesheet"
-    />
-  </head>
-  <style>
-    .panel {
-      padding: 0 18px;
-      background-color: white;
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.2s ease-out;
-    }
-  </style>
 
-  <script>
-    var acc = document.getElementsByClassName("accordion");
-    var i;
+<head>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="{{ url_for('static', filename='js/index.js') }}"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Raleway&display=swap" rel="stylesheet" />
+</head>
+<style>
+  .panel {
+    padding: 0 18px;
+    background-color: white;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.2s ease-out;
+  }
+  .accordion:hover{
+    background-color: white;
+  }
+</style>
 
-    for (i = 0; i < acc.length; i++) {
-      acc[i].addEventListener("click", function () {
-        this.classList.toggle("active");
-        var panel = this.nextElementSibling;
-        if (panel.style.maxHeight) {
-          panel.style.maxHeight = null;
-        } else {
-          panel.style.maxHeight = panel.scrollHeight + "px";
-        }
-      });
-    }
-  </script>
-  <body>
-    <h1 style="font-family: 'Raleway'">Expungement Eligibility Checker</h1>
+<body>
+  <h1 style="font-family: 'Raleway'">Expungement Eligibility Checker</h1>
 
-    <form action="" method="post" enctype="multipart/form-data">
-      <select class="slct" id="slct">
-        <option value="">Select State</option>
-        <a href="/NY"><option value="/NY">New York</option>
-        <a href="/WA"><option value="/WA">Washington</option></a>
-        <a href="/CT"><option value="/CT">Connecticut</option>
-        <a href="/OR"><option value="/OR">Oregon</option></a>
-      </select>
-    </form>
-
-    <div>
-      <button class="accordion">What is Expungement?</button>
-      <div class="panel">
-        <p>The answer to this question is a difficult one. There are many factors that determine
-        if your record is expungeable. This difficulty is why we created this tool. By using this app,
-        you will be able to get to the bottom of whether or not your case is expungeable.</p>
+  <form action="" method="post" enctype="multipart/form-data">
+    <select class="slct" id="slct">
+      <option value="">Select State</option>
+      <a href="/NY">
+        <option value="/NY">New York</option>
+        <a href="/WA">
+          <option value="/WA">Washington</option>
+        </a>
+        <a href="/CT">
+          <option value="/CT">Connecticut</option>
+          <a href="/OR">
+            <option value="/OR">Oregon</option>
+          </a>
+    </select>
+  </form>
+  <section class="p-4 text-center w-50">
+    <div class="accordion" id="accordionExample" style="background-color:white">
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="headingOne">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+            What is Expungement?
+          </button>
+        </h2>
+        <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+          <div class="accordion-body">
+            <p class="text-start">The answer to this question is a difficult one. There are many factors that determine
+              if your record is expungeable. This difficulty is why we created this tool. By using this app,
+              you will be able to get to the bottom of whether or not your case is expungeable.</p>
+          </div>
+        </div>
       </div>
-
-      <button class="accordion">Why is Expungment Important?</button>
-      <div class="panel">
-        <p>Expungement gives you a clean slate. Having criminal charges on your record can prevent
-        you from finding employment, public housing, and other government services. Expunging your
-        criminal record can make accessing work, housing, and services easier.
-        Generally, it provides a stronger level of protection and in some cases is as if the record never existed.
-        </p>
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="headingTwo">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+            Why is Expungement important?
+          </button>
+        </h2>
+        <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+          <div class="accordion-body">
+            <p class="text-start">Expungement gives you a clean slate. Having criminal charges on your record can prevent
+              you from finding employment, public housing, and other government services. Expunging your
+              criminal record can make accessing work, housing, and services easier.
+              Generally, it provides a stronger level of protection and in some cases is as if the record never existed.
+            </p>
+          </div>
+        </div>
       </div>
-
-      <button class="accordion">What are Expungement Tools?</button>
-      <div class="panel">
-        <p>Expungement Tools can break down the process into more user-friendly chunks,
-          telling visitors, for example, how to get a copy of their actual criminal records.
-          They can provide a series of simply worded questions to help users discover whether
-          charges filed against them are potentially expungeable, including queries about how
-          old they were when charged, where the criminal case occurred and whether the individual
-          was released without conviction. In addition, users are potentially able to download
-          expungement petitions and fee waivers directly from the website.
-          An example of one of these tools is ExpungeMaryland.org. The Expunge Maryland tool is
-          user facing meaning the individual seeking to have their record expunged is who the tool
-          is designed for. The individual will answer a series of questions surrounding their
-          circumstances and then based on the answers a recommendation will be whether or not
-          the individual’s record is eligible for expungement along with next possible steps.</p>
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="headingThree">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+            What are Expungement Tools?
+          </button>
+        </h2>
+        <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+          <div class="accordion-body">
+            <p class="text-start">Expungement Tools can break down the process into more user-friendly chunks,
+              telling visitors, for example, how to get a copy of their actual criminal records.
+              They can provide a series of simply worded questions to help users discover whether
+              charges filed against them are potentially expungeable, including queries about how
+              old they were when charged, where the criminal case occurred and whether the individual
+              was released without conviction. In addition, users are potentially able to download
+              expungement petitions and fee waivers directly from the website.
+              An example of one of these tools is ExpungeMaryland.org. The Expunge Maryland tool is
+              user facing meaning the individual seeking to have their record expunged is who the tool
+              is designed for. The individual will answer a series of questions surrounding their
+              circumstances and then based on the answers a recommendation will be whether or not
+              the individual’s record is eligible for expungement along with next possible steps.</p>
+          </div>
+        </div>
       </div>
-
-      <button class="accordion">What is Record Sealing?</button>
-      <div class="panel">
-        <p>Record sealing is the legal process of concealing or hiding charges
-          from a person’s permanent criminal record so that it is not accessible
-          by the public, though it might still be available to law enforcement and
-          certain prospective employers. Once a person’s records are sealed, all
-          of the proceedings recounted in a person’s record are treated as if
-          they never occurred.</p>
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="headingFour">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+            What is Record Sealing?
+          </button>
+        </h2>
+        <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#accordionExample">
+          <div class="accordion-body">
+            <p class="text-start">Record sealing is the legal process of concealing or hiding charges
+              from a person’s permanent criminal record so that it is not accessible
+              by the public, though it might still be available to law enforcement and
+              certain prospective employers. Once a person’s records are sealed, all
+              of the proceedings recounted in a person’s record are treated as if
+              they never occurred.</p>
+          </div>
+        </div>
       </div>
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="headingFive">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+            Is it easy to get my record expunged?
+          </button>
+        </h2>
+        <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive" data-bs-parent="#accordionExample">
+          <div class="accordion-body">
+            <p class="text-start">Getting a criminal record sealed or expunged is not easy in any state.
+              Most people have no idea which charges can be expunged or how the process works.
+              While the Internet is chock-full of information, it's often of little help to most
+              because the information is difficult to decipher and involves lengthy explanations of a
+              complicated state statute. Information can be found using “Expungement Tools” which
+              are web-based interactive apps providing general
+              information and access to state specific links, or attorney websites.
 
-      <button class="accordion">Is it easy to get my record expunged?</button>
-      <div class="panel">
-        <p>Getting a criminal record sealed or expunged is not easy in any state.
-          Most people have no idea which charges can be expunged or how the process works.
-          While the Internet is chock-full of information, it's often of little help to most
-          because the information is difficult to decipher and involves lengthy explanations of a
-          complicated state statute. Information can be found using “Expungement Tools” which
-          are web-based interactive apps providing general
-          information and access to state specific links, or attorney websites.
-
-          As for juvenile records, they can be expunged once the juvenile reaches the majority age.
-        </p>
+              As for juvenile records, they can be expunged once the juvenile reaches the majority age.
+            </p>
+          </div>
+        </div>
       </div>
-
-      % add two other paragraphs
     </div>
-  </body>
+  </section>
+</body>
+
 </html>
